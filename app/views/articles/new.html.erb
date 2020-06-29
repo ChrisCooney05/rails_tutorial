@@ -1,4 +1,23 @@
-<h1> New Article</h1>
-
 <%# rails will default to looking for a view in the directory named after the controller
 with the same name as the method%>
+
+<h1> New Article</h1>
+<%#form_with is used to create forms in rails scope: :article tells the form what it is for%>
+<%= form_with scope: :article, url: articles_path,
+local: true do |form| %>
+<%# url: gives the form a diferent action and the articles_path means rails will look at all available
+url patterns for articles and will send it to the post route %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text%>
+  <p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<%end%>
