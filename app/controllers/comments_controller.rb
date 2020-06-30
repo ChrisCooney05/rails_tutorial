@@ -2,9 +2,9 @@
 
 class CommentsController < ApplicationController
   def create
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-    redirect to article_path(@article)
+    redirect_to article_path(@article)
   end
 
   # must first call out the article as all comments are linked to them
