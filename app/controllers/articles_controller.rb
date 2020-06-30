@@ -10,15 +10,21 @@ class ArticlesController < ApplicationController
   end
   # Article.find is used to find the article we want, using the passed in ID params from the url
 
-  def new; end
+  def new
+    @article = Article.new
+  end
 
   def create
     @article = Article.new(article_params)
     # Article.new is referring to app/models/article.rb
     # info in article params are auto mapped to the correct tables
     # for safety we need to tell ruby what information is permitted before it can be accepted
-    @article.save
-    redirect_to @article
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
+    # checks if there are any errors on the saving of @article due to model validators
   end
 
   private
