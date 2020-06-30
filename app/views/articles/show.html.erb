@@ -12,19 +12,7 @@
 <%= render @article.comments %>
 
 <h2>Add a comment:</h2>
-<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form'%>
 <%# adds form on article page that creates new comments by calling commentcontroller
 create method
 form_with uses an array that builds a nested route /articles/:id/comments%>
