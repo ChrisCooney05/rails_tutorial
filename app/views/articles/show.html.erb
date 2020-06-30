@@ -8,6 +8,26 @@
   <%= @article.text %>
 </p>
 
+<h2>Add a comment:</h2>
+<%= from_with (model: [@article, @article.comments.build], 
+local: true) do |form|%>
+  <p>
+    <%=form.label :commenter%>
+    <%=form.text_field :commenter%>
+  </p>
+  <p>
+    <%= form.label :body%>
+    <%= form.text_area :body%>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<%end%>
+<%# adds form on article page that creates new comments by calling commentcontroller
+create method
+form_with uses an array that builds a nested route /articles/:id/comments%>
+
+
 <%= link_to 'Back', articles_path %>
 <%= link_to 'Edit', edit_article_path(@article)%>
 <%# if using action from the same controller you dont need to specify it%>
