@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create
     @article = Article.new(article_params)
     # Article.new is referring to app/models/article.rb
@@ -25,6 +29,16 @@ class ArticlesController < ApplicationController
       render 'new'
     end
     # checks if there are any errors on the saving of @article due to model validators
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    # checks that the updated article passes checks, if not renders edit with errors
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render 'edit'
+    end
   end
 
   private
