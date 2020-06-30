@@ -15,8 +15,12 @@
       <td><%=article.text%></td>
       <td><%=link_to 'Show', article_path(article)%></td>
       <td><%=link_to 'Edit', edit_article_path(article)%></td>
+      <td><%=link_to 'Destroy', article_path(article),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }%></td>
     </tr>
   <%end%>
+  <%#method route passed in as second argument, data: confirm: will give a warning before proceding%>
 </table>
 <%#tr-tablerow td-table data th -tablehead link_to created a link called show, 
 leading to article in question%>
